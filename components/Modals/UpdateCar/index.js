@@ -15,12 +15,12 @@ import { useEffect } from 'react';
 
 const AddCar = ({ isOpen, onClose, onSubmit, data }) => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    
+
 
     useEffect(() => {
         reset(data)
-    },[data])
-
+    }, [data])
+    
     return (
         <BasicUsage
             isOpen={isOpen}
@@ -63,9 +63,18 @@ const AddCar = ({ isOpen, onClose, onSubmit, data }) => {
                             <Input placeholder='Image' type={'file'} {...register("image")} />
                             <FormErrorMessage>{errors?.image && errors?.image?.message}</FormErrorMessage>
                         </FormControl>
+                          <FormControl mt={4} >
+                            <img
+                                src={data?.image}
+                                height={300}
+                                width={300}
+                                style={{ maxWidth: "100%",margin: "auto" }}
+                            />
+                        </FormControl>
                         <FormControl mt={4} isInvalid={errors?.image}>
                             <Button type='submit'>Submit</Button>
                         </FormControl>
+                      
                     </ModalBody>
                 </form>
             </ModalContent>
